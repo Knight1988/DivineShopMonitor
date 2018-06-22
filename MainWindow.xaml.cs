@@ -59,8 +59,10 @@ namespace DivineShopMonitor
         {
             Task.Run(() =>
             {
+                CheckForStock("Garena 1000", "http://divineshop.vn/garena-2500?tag=garena");
                 CheckForStock("Garena 500", "http://divineshop.vn/garena-500?tag=garena");
                 CheckForStock("Garena 200", "http://divineshop.vn/garena-200?tag=garena");
+                CheckForStock("Garena 100", "http://divineshop.vn/garena-100?tag=garena");
             });
         }
 
@@ -82,7 +84,7 @@ namespace DivineShopMonitor
                 {
                     // prevent many dialog
                     _isDialogOpened = true;
-                    MessageBox.Show($"{productName} {statusLabel.InnerText}");
+                    MessageBox.Show($"{productName} {statusLabel.InnerText}", "Prompt", MessageBoxButton.OK, MessageBoxImage.None, MessageBoxResult.None, MessageBoxOptions.DefaultDesktopOnly);
                     _isDialogOpened = false;
                     // No dialog for next 5 min
                     _pauseTime = DateTime.Now.AddMinutes(5);
