@@ -25,6 +25,7 @@ namespace DivineShopMonitor
         {
             InitializeComponent();
             MainGrid.DataContext = this;
+            AppendText($"{DateTime.Now:hh:mm:ss} - Starting...");
         }
 
         public string LogText
@@ -57,6 +58,7 @@ namespace DivineShopMonitor
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
+            AppendText($"{DateTime.Now:hh:mm:ss} - Checking...");
             Task.Run(() =>
             {
                 CheckForStock("Garena 1M-25%", "http://divineshop.vn/garena-2500?tag=garena");
