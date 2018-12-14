@@ -61,9 +61,11 @@ namespace DivineShopMonitor
             {
                 CheckForStock("Garena 1M-25%", "http://divineshop.vn/garena-2500?tag=garena");
                 CheckForStock("Garena 1M-20%", "http://divineshop.vn/garena-2400?tag=garena");
+                CheckForStock("Garena 520", "http://divineshop.vn/garena-520?tag=garena");
                 CheckForStock("Garena 500", "http://divineshop.vn/garena-500?tag=garena");
                 CheckForStock("Garena 200", "http://divineshop.vn/garena-200?tag=garena");
                 CheckForStock("Garena 100", "http://divineshop.vn/garena-100?tag=garena");
+                CheckForStock("Garena 87", "http://divineshop.vn/garena-87?tag=garena");
             });
         }
 
