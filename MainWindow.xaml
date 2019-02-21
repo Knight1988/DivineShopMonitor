@@ -1,14 +1,30 @@
-﻿<Window x:Class="DivineShopMonitor.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DivineShopMonitor"
+        xmlns:Model="clr-namespace:DivineShopMonitor.Model" x:Class="DivineShopMonitor.MainWindow"
         mc:Ignorable="d"
         Loaded="MainWindow_OnLoaded"
         Title="Divine Shop Monitor" Height="350" Width="525">
 
+    <Window.DataContext>
+        <Model:CheckModel/>
+    </Window.DataContext>
+
     <Grid x:Name="MainGrid">
-        <TextBox x:Name="LogTextBox" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Path=LogText}" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="155"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <CheckBox x:Name="chkGarena2500" Content="Garena 1M25%" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="15" Width="101" IsChecked="{Binding Garena2500}"/>
+        <CheckBox x:Name="chkGarena2400" Content="Garena 1M-20%" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Height="15" Width="106" IsChecked="{Binding Garena2400}"/>
+        <CheckBox x:Name="chkGarena520" Content="Garena 520" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Height="15" Width="80" IsChecked="{Binding Garena520}"/>
+        <CheckBox x:Name="chkGarena500" Content="Garena 500" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Height="15" Width="80" IsChecked="{Binding Garena500}"/>
+        <CheckBox x:Name="chkGarena200" Content="Garena 200" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Height="15" Width="80" IsChecked="{Binding Garena200}"/>
+        <CheckBox x:Name="chkGarena100" Content="Garena 100" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top" Height="15" Width="80" IsChecked="{Binding Garena100}"/>
+        <CheckBox x:Name="chkGarena87" Content="Garena 87" HorizontalAlignment="Left" Margin="10,130,0,0" VerticalAlignment="Top" Height="15" Width="74" IsChecked="{Binding Garena87}"/>
+        <TextBox x:Name="LogTextBox" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding LogText}" Grid.Row="1" />
     </Grid>
 </Window>

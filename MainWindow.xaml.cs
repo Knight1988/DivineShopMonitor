@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using DivineShopMonitor.Annotations;
+using DivineShopMonitor.Model;
 using HtmlAgilityPack;
 
 namespace DivineShopMonitor
@@ -59,15 +60,23 @@ namespace DivineShopMonitor
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             AppendText($"{DateTime.Now:hh:mm:ss} - Checking...");
+            var model = (CheckModel) DataContext;
             Task.Run(() =>
             {
-                CheckForStock("Garena 1M-25%", "http://divineshop.vn/garena-2500?tag=garena");
-                CheckForStock("Garena 1M-20%", "http://divineshop.vn/garena-2400?tag=garena");
-                CheckForStock("Garena 520", "http://divineshop.vn/garena-520?tag=garena");
-                CheckForStock("Garena 500", "http://divineshop.vn/garena-500?tag=garena");
-                CheckForStock("Garena 200", "http://divineshop.vn/garena-200?tag=garena");
-                CheckForStock("Garena 100", "http://divineshop.vn/garena-100?tag=garena");
-                CheckForStock("Garena 87", "http://divineshop.vn/garena-87?tag=garena");
+                try
+                {
+                    if (model.Garena2500) CheckForStock("Garena 1M-25%", "http://divineshop.vn/garena-2500?tag=garena");
+                    if (model.Garena2400) CheckForStock("Garena 1M-20%", "http://divineshop.vn/garena-2400?tag=garena");
+                    if (model.Garena520) CheckForStock("Garena 520", "http://divineshop.vn/garena-520?tag=garena");
+                    if (model.Garena500) CheckForStock("Garena 500", "http://divineshop.vn/garena-500?tag=garena");
+                    if (model.Garena200) CheckForStock("Garena 200", "http://divineshop.vn/garena-200?tag=garena");
+                    if (model.Garena100) CheckForStock("Garena 100", "http://divineshop.vn/garena-100?tag=garena");
+                    if (model.Garena87) CheckForStock("Garena 87", "http://divineshop.vn/garena-87?tag=garena");
+                }
+                catch (Exception ex)
+                {
+                    AppendText(ex.Message);
+                }
             });
         }
 
