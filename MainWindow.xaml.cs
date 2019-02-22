@@ -53,25 +53,36 @@ namespace DivineShopMonitor
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
             _dispatcherTimer.Tick += dispatcherTimer_Tick;
-            _dispatcherTimer.Interval = new TimeSpan(0, 1, 0);
+            _dispatcherTimer.Interval = new TimeSpan(0, 0, 10);
             _dispatcherTimer.Start();
         }
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             AppendText($"{DateTime.Now:hh:mm:ss} - Checking...");
-            var model = (CheckModel) DataContext;
+            try
+            {
+                if (chkGarena2500.IsChecked == true) CheckForStockAsync("Garena 1M-25%", "http://divineshop.vn/garena-2500?tag=garena");
+                if (chkGarena2400.IsChecked == true) CheckForStock("Garena 1M-20%", "http://divineshop.vn/garena-2400?tag=garena");
+                if (chkGarena520.IsChecked == true) CheckForStock("Garena 520", "http://divineshop.vn/garena-520?tag=garena");
+                if (chkGarena500.IsChecked == true) CheckForStock("Garena 500", "http://divineshop.vn/garena-500?tag=garena");
+                if (chkGarena200.IsChecked == true) CheckForStock("Garena 200", "http://divineshop.vn/garena-200?tag=garena");
+                if (chkGarena100.IsChecked == true) CheckForStock("Garena 100", "http://divineshop.vn/garena-100?tag=garena");
+                if (chkGarena87.IsChecked == true) CheckForStock("Garena 87", "http://divineshop.vn/garena-87?tag=garena");
+            }
+            catch (Exception ex)
+            {
+                AppendText(ex.Message);
+            }
+        }
+
+        private void CheckForStockAsync(string productName, string productUrl)
+        {
             Task.Run(() =>
             {
                 try
                 {
-                    if (model.Garena2500) CheckForStock("Garena 1M-25%", "http://divineshop.vn/garena-2500?tag=garena");
-                    if (model.Garena2400) CheckForStock("Garena 1M-20%", "http://divineshop.vn/garena-2400?tag=garena");
-                    if (model.Garena520) CheckForStock("Garena 520", "http://divineshop.vn/garena-520?tag=garena");
-                    if (model.Garena500) CheckForStock("Garena 500", "http://divineshop.vn/garena-500?tag=garena");
-                    if (model.Garena200) CheckForStock("Garena 200", "http://divineshop.vn/garena-200?tag=garena");
-                    if (model.Garena100) CheckForStock("Garena 100", "http://divineshop.vn/garena-100?tag=garena");
-                    if (model.Garena87) CheckForStock("Garena 87", "http://divineshop.vn/garena-87?tag=garena");
+                    CheckForStock(productName, productUrl);
                 }
                 catch (Exception ex)
                 {
